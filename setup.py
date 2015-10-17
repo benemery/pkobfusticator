@@ -11,7 +11,7 @@ install_require = [
 
 test_require = [
     # Testing
-    'pytest==2.7.2',
+    'pytest==2.8.2',
     'pytest-cache==1.0',
     'pytest-coverage',
 
