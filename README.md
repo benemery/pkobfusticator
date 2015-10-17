@@ -1,5 +1,8 @@
 # PkObfusticator
 
+![Build status]
+(https://travis-ci.org/benemery/pkobfusticator.svg?branch=master)
+
 Simple Primary Key obfustication so they can be referenced publically without revealing information about the system behind it.
 
 
