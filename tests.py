@@ -1,4 +1,4 @@
-from pkobfusticator import SplitExclusiveOr, Obfusticator
+from pkobfusticator import SplitOr, Obfusticator
 
 TEST_NUMS = [
     0,
@@ -22,20 +22,20 @@ TEST_NUMS = [
 ]
 
 
-class TestSplitExclusiveOr(object):
+class TestSplitMoreOr(object):
     def test_conversion(self):
-        strategy = SplitExclusiveOr(salt=0xc0de)
+        strategy = SplitOr(salt=0xc0de)
         key = 0x1234
 
         for num in TEST_NUMS:
             encoded = strategy.transcode(num, key=key)
             decoded = strategy.transcode(encoded, key=key)
-            assert num == decoded
+            assert num == decoded, "Failed: %d" % num
 
 
 class TestObfusticator(object):
     def test_base64(self):
-        obfusticator = Obfusticator(strategy=SplitExclusiveOr, salt=0xc0de)
+        obfusticator = Obfusticator(strategy=SplitOr, salt=0xc0de)
         key = 0x1234
 
         for num in TEST_NUMS:

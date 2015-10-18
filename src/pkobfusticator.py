@@ -3,6 +3,9 @@ import struct
 
 
 class BaseStrategy(object):
+    def __init__(self, salt):
+        self.salt = salt
+
     def transcode(self, num, key):
         """Convert num from one form to another"""
         raise NotImplementedError()
@@ -12,11 +15,8 @@ class BaseStrategy(object):
         return self.transcode(num, key)
 
 
-class SplitExclusiveOr(BaseStrategy):
+class SplitOr(BaseStrategy):
     """Use one portion of our number to encode the other"""
-    def __init__(self, salt):
-        self.salt = salt
-
     def transcode(self, num, key):
         right = num & 0xffff
         left = num >> 16 & 0xffff
@@ -78,4 +78,4 @@ class Obfusticator(object):
 
 def get_defualt_obfusticator(salt):
     """Small helper to fetch the correct obfusticator"""
-    return Obfusticator(SplitExclusiveOr, salt)
+    return Obfusticator(SplitOr, salt)
